@@ -1,4 +1,4 @@
-package classes.Persons;
+package classes.People;
 
 import classes.projects.Project;
 

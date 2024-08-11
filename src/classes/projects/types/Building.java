@@ -1,6 +1,5 @@
 package classes.projects.types;
 
-import classes.Persons.Person;
 import enums.ProjectType;
 
 public class Building {

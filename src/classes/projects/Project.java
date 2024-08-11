@@ -1,7 +1,7 @@
 package classes.projects;
 
-import classes.Persons.Client;
-import classes.Persons.Worker;
+import classes.People.Client;
+import classes.People.Worker;
 import enums.ProjectType;
 
 import java.util.Date;

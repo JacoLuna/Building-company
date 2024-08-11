@@ -1,5 +1,5 @@
-import classes.Persons.Client;
-import classes.Persons.Person;
+import classes.People.Client;
+import classes.People.Person;
 
 import java.util.Date;
 
