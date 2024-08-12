@@ -2,11 +2,11 @@ package classes.projects.types;
 
 import enums.ProjectType;
 
-public class Department extends Building{
+public class Apartment extends Building{
     int floors;
-    boolean MRP; //multi-purpouse room
+    boolean MRP; //multipurpose room
 
-    public Department(ProjectType name, long squareMeters, int floors, boolean MRP) {
+    public Apartment(ProjectType name, long squareMeters, int floors, boolean MRP) {
         super(name, squareMeters);
         this.floors = floors;
         this.MRP = MRP;
