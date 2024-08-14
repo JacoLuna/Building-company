@@ -2,13 +2,18 @@ package classes.projects.types;
 
 import enums.ProjectType;
 
-public class Apartment extends Building{
-    int floors;
+public class Apartment extends Structure {
+    int storeys;
     boolean MRP; //multipurpose room
 
-    public Apartment(ProjectType name, long squareMeters, int floors, boolean MRP) {
-        super(name, squareMeters);
-        this.floors = floors;
+    public Apartment(long squareMeters, int storeys, boolean MRP) {
+        super(ProjectType.APARTMENT, squareMeters);
+        this.storeys = storeys;
         this.MRP = MRP;
+    }
+
+    @Override
+    public String showDescription() {
+        return "Apartment building containing:" + storeys + " storeys " + ((MRP)?"a multipurpose room":"") + super.generalInfo();
     }
 }

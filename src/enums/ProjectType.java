@@ -2,7 +2,7 @@ package enums;
 
 public enum ProjectType {
     HOUSE,
-    DEPARTMENT,
+    APARTMENT,
     POOL,
     GARDEN
 }

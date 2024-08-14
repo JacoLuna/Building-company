@@ -3,7 +3,6 @@ package classes.projects;
 import java.util.Date;
 
 public class Product {
-
     String name;
     Date expirationDate;
     private float stock;
