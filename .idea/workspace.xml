@@ -6,9 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="64b9ac99-5435-44d6-8879-c501d9a8e836" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/classes/People/Person.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/classes/People/Person.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/classes/projects/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/classes/projects/Product.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/classes/BuildingCompany.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/classes/BuildingCompany.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/classes/projects/types/Apartment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/classes/projects/types/ApartmentBuilding.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/classes/services/MenuService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/classes/services/MenuService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -80,7 +80,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/classes/BuildingCompany.java</url>
-          <line>69</line>
+          <line>67</line>
           <option name="timeStamp" value="4" />
         </line-breakpoint>
       </breakpoints>

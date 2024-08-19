@@ -8,8 +8,6 @@ import enums.*;
 
 import java.awt.*;
 import java.util.*;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public final class BuildingCompany {
 
@@ -29,7 +27,7 @@ public final class BuildingCompany {
         }
     }
     public void createStructures(){
-        Structure apartment = new Apartment(30, 10, true);
+        Structure apartment = new ApartmentBuilding(30, 10, true);
         Structure garden = new Garden(15, TypeOfSoil.PEAT,10);
         Structure house = new House(30, 5, 2);
         Structure pool = new Pool(30, 10, 24);
@@ -46,7 +44,7 @@ public final class BuildingCompany {
     public void startProgram(){
         do {
             System.out.print(MenuService.printMenu("Menu", new String[]{"AMD", "Print Objects", "Begin Project","Exit"}) );
-                MenuService.setAns(keyboard.nextInt(), new ArrayList<Integer>(){{
+                MenuService.setIntAns(keyboard.nextInt(), new ArrayList<Integer>(){{
                     add(0);
                     add(1);
                     add(2);
@@ -69,7 +67,7 @@ public final class BuildingCompany {
     public void AMDMenu(){
         do {
             System.out.print(MenuService.printMenu("AMD",new String[]{"Person","Structure","Product", "Exit"}));
-                    MenuService.setAns(keyboard.nextInt(), new ArrayList<Integer>(){{
+                    MenuService.setIntAns(keyboard.nextInt(), new ArrayList<Integer>(){{
                                 add(0);
                                 add(1);
                                 add(2);
@@ -89,7 +87,7 @@ public final class BuildingCompany {
     public void objectMenu(){
         do {
             System.out.print(MenuService.printMenu("Objects",new String[]{"Exit"}));
-                    MenuService.setAns(keyboard.nextInt(), new ArrayList<Integer>(){{
+                    MenuService.setIntAns(keyboard.nextInt(), new ArrayList<Integer>(){{
                                 add(0);
                             }}
             );
@@ -100,14 +98,20 @@ public final class BuildingCompany {
         String[] typeOfSoil = Arrays.stream(TypeOfSoil.values()).map(Enum::name).toArray(String[]::new);
         int projectIndex;
         int soilIndex;
-        int squareMetersOfSoilIndex;
+        float squareMetersOfSoil;
+        int rooms;
+        int bathrooms;
+        int storeys;
+        boolean MRP;
+        float depth;
+        float temperature;
         do {
             System.out.print(MenuService.printMenu("Projects",new String[]{"Begin project","Exit"}));
-            MenuService.setAns(keyboard.nextInt(), new ArrayList<Integer>(){{ add(0);}}
+            MenuService.setIntAns(keyboard.nextInt(), new ArrayList<Integer>(){{ add(0);}}
             );
             if (MenuService.getAns() == 0) {
                 System.out.print(MenuService.printMenu("What type of project do you want to do?", typeOfProjects));
-                projectIndex = MenuService.setAns(keyboard.nextInt(), new ArrayList<Integer>() {{
+                projectIndex = MenuService.setIntAns(keyboard.nextInt(), new ArrayList<Integer>() {{
                         for (int i = 0; i < typeOfProjects.length ; i++) {
                             add(i);
                         }
@@ -117,27 +121,50 @@ public final class BuildingCompany {
                 if (MenuService.getAns() != -1) {
                     switch (MenuService.getAns()){
                         case 0:
-                            System.out.print(MenuService.printMenu("what type Of Soil will be used?", typeOfSoil));
-                            soilIndex = MenuService.setAns(keyboard.nextInt(), new ArrayList<Integer>() {{
-                                    for (int i = 0; i < typeOfSoil.length ; i++) {
-                                        add(i);
-                                    }
-                                }}
-                            );
-
-                            System.out.print(MenuService.printMenu("how many square meters of soil will be used?"));
-                            squareMetersOfSoilIndex = MenuService.setAns(keyboard.nextInt(), new ArrayList<Integer>() {{
-                                        for (int i = 0; i < typeOfSoil.length ; i++) {
-                                            add(i);
-                                        }
-                                    }}
-                            );
+                            do {
+                                System.out.print("how many bathrooms will the house have?");
+                                bathrooms = MenuService.setIntAns(keyboard.nextInt(), 0, 100);
+                            }while (bathrooms != -1);
+                            do {
+                                System.out.print("how many rooms will the house have?");
+                                rooms = MenuService.setIntAns(keyboard.nextInt(), 0, 100);
+                            }while (rooms != -1);
                             break;
                         case 1:
+                            do {
+                                System.out.print("how many storeys will the Apartment Building have?");
+                                storeys = MenuService.setIntAns(keyboard.nextInt(), 0, 100);
+                            }while (storeys != -1);
+                                MenuService.printMenu("will the building have an MRP?",new String[]{"Yes","No"});
+                                MRP = MenuService.setIntAns(keyboard.nextInt(),new ArrayList<>(){{
+                                    add(0);
+                                    add(1);
+                                    }}) == 0;
                             break;
                         case 2:
+                            do {
+                                System.out.print("how deep will the pool be?");
+                                squareMetersOfSoil = MenuService.setFloatAns(keyboard.nextFloat(), 0, 100);
+                            }while (squareMetersOfSoil != -1);
+                            do {
+                                System.out.print("how is the temperature going to be?");
+                                squareMetersOfSoil = MenuService.setFloatAns(keyboard.nextFloat(), 15, 30);
+                            }while (squareMetersOfSoil != -1);
                             break;
                         case 3:
+                            do {
+                                System.out.print(MenuService.printMenu("what type of soil will be used?", typeOfSoil));
+                                soilIndex = MenuService.setIntAns(keyboard.nextInt(), new ArrayList<Integer>() {{
+                                            for (int i = 0; i < typeOfSoil.length ; i++) {
+                                                add(i);
+                                            }
+                                        }}
+                                );
+                            }while (soilIndex != -1);
+                            do {
+                                System.out.print("how many square meters of soil will be used?");
+                                squareMetersOfSoil = MenuService.setFloatAns(keyboard.nextFloat(), 0, 100);
+                            }while (squareMetersOfSoil != -1);
                             break;
                     }
                 }
