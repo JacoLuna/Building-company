@@ -1,10 +1,14 @@
 package classes.People;
 
 import classes.projects.Project;
+import classes.services.Global;
+import classes.services.MenuService;
 
+import java.awt.*;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.Objects;
+import java.util.Scanner;
 
 public abstract class Person {
     protected String type;
@@ -15,21 +19,24 @@ public abstract class Person {
     protected String country;
     Date BDay;
     protected Project[] project;
+    private String password;
 
-    public Person(String name, String lastName, String country, Date BDay) {
+    public Person(String name, String lastName, String country, Date BDay, String password) {
         setId();
         this.name = name;
         this.lastName = lastName;
         this.country = country;
         this.BDay = BDay;
+        this.password = password;
     }
-    public Person(String name, String lastName, String country, Date BDay, Project[] project) {
+    public Person(String name, String lastName, String country, Date BDay, String password, Project[] project) {
         setId();
         this.name = name;
         this.lastName = lastName;
         this.country = country;
         this.BDay = BDay;
         this.project = project;
+        this.password = password;
     }
     public static int getGlobalId() {
         return globalId;
@@ -46,6 +53,19 @@ public abstract class Person {
         setGlobalId();
     }
 
+    public static boolean signIn(){
+//        Scanner keyboard = new Scanner(System.in);
+//        System.out.println("Name");
+//        String pass = keyboard.next();
+//        System.out.println(pass);
+//        Global.LogIn = true;
+        //TODO sign in checking with some kind of array of registered users
+        return true;
+    }
+    public static boolean logIn(String name, String password){
+        //TODO log in
+        return  true;
+    }
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

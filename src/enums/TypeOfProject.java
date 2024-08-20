@@ -1,6 +1,6 @@
 package enums;
 
-public enum ProjectType {
+public enum TypeOfProject {
     HOUSE,
     APARTMENT,
     POOL,

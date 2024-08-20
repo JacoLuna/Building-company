@@ -1,6 +1,6 @@
 package classes.projects.types;
 
-import enums.ProjectType;
+import enums.TypeOfProject;
 
 import java.util.Objects;
 
@@ -8,10 +8,10 @@ public abstract class Structure {
 
     private static int globalId = 0;
     protected int id;
-    protected ProjectType name;
+    protected TypeOfProject name;
     public long squareMeters;
 
-    public Structure(ProjectType name, long squareMeters) {
+    public Structure(TypeOfProject name, long squareMeters) {
         this.name = name;
         this.squareMeters = squareMeters;
     }

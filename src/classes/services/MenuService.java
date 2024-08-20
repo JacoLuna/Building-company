@@ -7,6 +7,7 @@ import java.util.Objects;
 public class MenuService {
     private static int intAns;
     private static float floatAns;
+    private static long longAns;
 
     public static String printMenu(String tittle, String[] ans){
         StringBuilder sb = new StringBuilder(tittle + "\n");
@@ -54,7 +55,7 @@ public class MenuService {
         return MenuService.intAns;
     }
 
-    public static float setFloatAns(float ans, List<Integer> ansArray) {
+    public static float setFloatAns(float ans, List<Float> ansArray) {
         MenuService.floatAns = -1;
         try {
             if (ansArray.contains(ans)) {
@@ -81,5 +82,34 @@ public class MenuService {
             System.out.println(e.toString());
         }
         return MenuService.floatAns;
+    }
+
+    public static long setLongAns(long ans, List<Long> ansArray) {
+        MenuService.longAns = -1;
+        try {
+            if (ansArray.contains(ans)) {
+                MenuService.longAns = ans;
+            } else {
+                System.out.println("ERROR Option not available");
+            }
+        } catch (Exception e) {
+            System.out.println(e.toString());
+        }
+        return MenuService.longAns;
+    }
+
+    public static long setLongAns(long ans, long minValue, long maxValue) {
+        MenuService.longAns = -1;
+        try {
+            if (ans > minValue && ans < maxValue) {
+                MenuService.longAns = ans;
+            } else {
+                System.out.println("ERROR Option not available");
+            }
+            return MenuService.longAns;
+        } catch (Exception e) {
+            System.out.println(e.toString());
+        }
+        return MenuService.longAns;
     }
 }

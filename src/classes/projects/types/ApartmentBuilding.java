@@ -1,13 +1,13 @@
 package classes.projects.types;
 
-import enums.ProjectType;
+import enums.TypeOfProject;
 
 public class ApartmentBuilding extends Structure {
     int storeys;
     boolean MRP; //multipurpose room
 
     public ApartmentBuilding(long squareMeters, int storeys, boolean MRP) {
-        super(ProjectType.APARTMENT, squareMeters);
+        super(TypeOfProject.APARTMENT, squareMeters);
         this.storeys = storeys;
         this.MRP = MRP;
     }

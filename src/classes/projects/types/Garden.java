@@ -1,6 +1,6 @@
 package classes.projects.types;
 
-import enums.ProjectType;
+import enums.TypeOfProject;
 import enums.TypeOfSoil;
 
 public class Garden extends Structure {
@@ -8,7 +8,7 @@ public class Garden extends Structure {
     float squareMetersOfSoil;
 
     public Garden(long squareMeters, TypeOfSoil typeOfSoil, float squareMetersOfSoil) {
-        super(ProjectType.GARDEN, squareMeters);
+        super(TypeOfProject.GARDEN, squareMeters);
         this.typeOfSoil = typeOfSoil;
         this.squareMetersOfSoil = squareMetersOfSoil;
     }
