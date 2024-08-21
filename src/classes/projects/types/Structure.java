@@ -46,7 +46,7 @@ public abstract class Structure {
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(), name, squareMeters);
+        return 21 * name.hashCode() + (int)squareMeters;
     }
 
     @Override

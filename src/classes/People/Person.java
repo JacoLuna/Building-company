@@ -72,17 +72,17 @@ public abstract class Person {
         if (o == null || getClass() != o.getClass()) return false;
         Person person = (Person) o;
         return getId() == person.getId() &&
-                Objects.equals(type, person.type) &&
-                Objects.equals(name, person.name) &&
-                Objects.equals(lastName, person.lastName) &&
-                Objects.equals(country, person.country) &&
-                Objects.equals(BDay, person.BDay) &&
-                Objects.deepEquals(project, person.project);
+                type.equals(person.type) &&
+                name.equals(person.name) &&
+                lastName.equals(person.lastName) &&
+                country.equals( person.country) &&
+                BDay.equals(person.BDay) &&
+                Arrays.equals(project, person.project);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(), type, name, lastName, country, BDay, Arrays.hashCode(project));
+        return 21 * getId() + type.hashCode() + name.hashCode() + lastName.hashCode() + country.hashCode() + BDay.hashCode() + Arrays.hashCode(project);
     }
 
     @Override

@@ -50,15 +50,16 @@ public class Product {
         if (this == obj) return true;
         if (obj == null || getClass() != obj.getClass()) return false;
         Product product = (Product) obj;
-        return Float.compare(getStock(), product.getStock()) == 0 &&
-                Float.compare(getStockPoint(), product.getStockPoint()) == 0 &&
-                Float.compare(price, product.price) == 0 &&
-                Objects.equals(name, product.name) && Objects.equals(expirationDate, product.expirationDate);
+        return getStock() == product.getStock() &&
+                getStockPoint() == product.getStockPoint() &&
+                price == product.price &&
+                name.equals(product.name) &&
+                expirationDate.equals(product.expirationDate);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, expirationDate, price);
+        return 21 * name.hashCode() + expirationDate.hashCode() + (int)price;
     }
 
     @Override
