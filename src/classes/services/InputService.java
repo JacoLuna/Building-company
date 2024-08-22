@@ -12,16 +12,14 @@ public class InputService {
     public int getAns(){
         return intAns;
     }
-    public int setIntAns(String prompt, int ans, List<Integer> ansArray) {
-        intAns = -1;
+    public int setIntAns(String prompt, List<Integer> ansArray) {
         try {
             do {
                 System.out.print(prompt);
-                intAns = setIntAns(keyboard.nextInt(), ansArray);
-                if (ansArray.contains(ans)){
-                    intAns = ans;
-                }else {
+                intAns = keyboard.nextInt();
+                if (!ansArray.contains(keyboard.nextInt())){
                     System.out.println("ERROR Option not available");
+                    intAns = -1;
                 }
             } while (intAns == -1);
         }catch (Exception e){
@@ -29,28 +27,24 @@ public class InputService {
         }
         return intAns;
     }
-    public int setIntAns(int ans, List<Integer> ansArray) {
-        intAns = -1;
+    public int setIntAns(List<Integer> ansArray) {
         try {
-            if (ansArray.contains(ans)){
-                intAns = ans;
-            }else {
+            intAns = keyboard.nextInt();
+            if (!ansArray.contains(intAns)){
                 System.out.println("ERROR Option not available");
+                intAns = -1;
             }
         }catch (Exception e){
             System.out.println(e.toString());
         }
         return intAns;
     }
-    public int setIntAns(String prompt, int ans, int minValue, int maxValue) {
-        intAns = -1;
+    public int setIntAns(String prompt, int minValue, int maxValue) {
         try {
             do {
                 System.out.print(prompt);
-                intAns = setIntAns(keyboard.nextInt(), minValue, maxValue);
-                if (ans > minValue && ans < maxValue ){
-                    intAns = ans;
-                }else {
+                intAns = keyboard.nextInt();
+                if (intAns < minValue || intAns > maxValue ){
                     System.out.println("ERROR Option not available");
                 }
             } while (intAns == -1);
@@ -59,12 +53,11 @@ public class InputService {
         }
         return intAns;
     }
-    public int setIntAns(int ans, int minValue, int maxValue) {
-        intAns = -1;
+    public int setIntAns(int minValue, int maxValue) {
         try {
-            if (ans > minValue && ans < maxValue ){
-                intAns = ans;
-            }else {
+            intAns = keyboard.nextInt();
+            if (intAns < minValue || intAns > maxValue ){
+                intAns = -1;
                 System.out.println("ERROR Option not available");
             }
         }catch (Exception e){
@@ -73,16 +66,14 @@ public class InputService {
         return intAns;
     }
 
-    public float setFloatAns(String prompt, float ans, List<Float> ansArray) {
-        floatAns = -1;
+    public float setFloatAns(String prompt, List<Float> ansArray) {
         try {
             do {
                 System.out.print(prompt);
-                floatAns = setFloatAns(keyboard.nextInt(), ansArray);
-                if (ansArray.contains(ans)) {
-                    floatAns = ans;
-                }else {
+                floatAns = keyboard.nextFloat();
+                if (!ansArray.contains(floatAns)) {
                     System.out.println("ERROR Option not available");
+                    floatAns = -1;
                 }
             } while (intAns == -1);
         } catch (Exception e) {
@@ -90,12 +81,11 @@ public class InputService {
         }
         return floatAns;
     }
-    public float setFloatAns(float ans, List<Float> ansArray) {
-        floatAns = -1;
+    public float setFloatAns(List<Float> ansArray) {
         try {
-            if (ansArray.contains(ans)) {
-                floatAns = ans;
-            } else {
+            floatAns = keyboard.nextFloat();
+            if (!ansArray.contains(floatAns)) {
+                floatAns = -1;
                 System.out.println("ERROR Option not available");
             }
         } catch (Exception e) {
@@ -103,16 +93,14 @@ public class InputService {
         }
         return floatAns;
     }
-    public float setFloatAns(String prompt, float ans, float minValue, float maxValue) {
-        floatAns = -1;
+    public float setFloatAns(String prompt, float minValue, float maxValue) {
         try {
             do {
                 System.out.print(prompt);
-                floatAns = setFloatAns(keyboard.nextInt(), minValue, maxValue);
-                if (ans > minValue && ans < maxValue) {
-                    floatAns = ans;
-                }else {
+                floatAns = keyboard.nextFloat();
+                if (floatAns > minValue && floatAns < maxValue) {
                     System.out.println("ERROR Option not available");
+                    floatAns = -1;
                 }
             } while (intAns == -1);
         } catch (Exception e) {
@@ -120,43 +108,38 @@ public class InputService {
         }
         return floatAns;
     }
-    public float setFloatAns(float ans, float minValue, float maxValue) {
-        floatAns = -1;
+    public float setFloatAns(float minValue, float maxValue) {
         try {
-            if (ans > minValue && ans < maxValue) {
-                floatAns = ans;
-            } else {
+            floatAns = keyboard.nextFloat();
+            if (floatAns < minValue || floatAns > maxValue) {
                 System.out.println("ERROR Option not available");
+                floatAns = -1;
             }
-            return floatAns;
         } catch (Exception e) {
             System.out.println(e.toString());
         }
         return floatAns;
     }
 
-    public long setLongAns(long ans, List<Long> ansArray) {
-        longAns = -1;
+    public long setLongAns(List<Long> ansArray) {
         try {
-            if (ansArray.contains(ans)) {
-                longAns = ans;
-            } else {
+            longAns = keyboard.nextLong();
+            if (!ansArray.contains(longAns)) {
                 System.out.println("ERROR Option not available");
+                longAns = -1;
             }
         } catch (Exception e) {
             System.out.println(e.toString());
         }
         return longAns;
     }
-    public long setLongAns(long ans, long minValue, long maxValue) {
-        longAns = -1;
+    public long setLongAns(long minValue, long maxValue) {
         try {
-            if (ans > minValue && ans < maxValue) {
-                longAns = ans;
-            } else {
+            longAns = keyboard.nextLong();
+            if (longAns < minValue && longAns > maxValue) {
                 System.out.println("ERROR Option not available");
+                longAns = -1;
             }
-            return longAns;
         } catch (Exception e) {
             System.out.println(e.toString());
         }

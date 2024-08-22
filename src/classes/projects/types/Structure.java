@@ -1,47 +1,53 @@
 package classes.projects.types;
 
+import classes.interfaces.Identifiable;
+import classes.interfaces.Printable;
 import enums.TypeOfProject;
 
-import java.util.Objects;
+public abstract class Structure implements Printable, Identifiable {
 
-public abstract class Structure {
-
-    private static int globalId = 0;
+    private static int globalId;
     protected int id;
     protected TypeOfProject name;
+    protected float price;
     public long squareMeters;
+
+    static {
+        globalId = 0;
+    }
 
     public Structure(TypeOfProject name, long squareMeters) {
         this.name = name;
         this.squareMeters = squareMeters;
+        this.price = name.baseCost * squareMeters;
     }
     public static int getGlobalId() {
         return globalId;
     }
-    public int getId() {
+    @Override
+    public final int getId() {
         return id;
     }
     private static void setGlobalId() {
         Structure.globalId++;
     }
-    public void setId() {
+    @Override
+    public final void setId() {
         int value = getGlobalId();
         this.id = value++;
         setGlobalId();
     }
 
     protected String generalInfo(){
-        return " and " + squareMeters + " square meters";
+        return " and " + squareMeters + " square meters" + " with a price of " + price + "$";
     }
-
-    public abstract String showDescription();
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Structure structure = (Structure) o;
-        return getId() == structure.getId() && squareMeters == structure.squareMeters && name == structure.name;
+        return getId() == structure.getId() && squareMeters == structure.squareMeters && name == structure.name && price == structure.price;
     }
 
     @Override
@@ -55,6 +61,7 @@ public abstract class Structure {
                 "id=" + id +
                 ", name=" + name +
                 ", squareMeters=" + squareMeters +
+                ", price=" + price +
                 '}';
     }
 }

@@ -2,6 +2,8 @@ package classes.projects.types;
 
 import enums.TypeOfProject;
 
+import java.util.Objects;
+
 public class ApartmentBuilding extends Structure {
     int storeys;
     boolean MRP; //multipurpose room
@@ -13,7 +15,7 @@ public class ApartmentBuilding extends Structure {
     }
 
     @Override
-    public String showDescription() {
+    public String printInformation() {
         return "Apartment building containing:" + storeys + " storeys " + ((MRP)?"a multipurpose room":"") + super.generalInfo();
     }
 }

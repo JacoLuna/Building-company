@@ -1,9 +1,7 @@
 package classes;
 
 import classes.People.*;
-import classes.services.Global;
-import classes.services.InputService;
-import classes.services.MenuService;
+import classes.services.*;
 
 import java.util.*;
 
@@ -21,9 +19,12 @@ public final class BuildingCompany {
 
     MenuService menuSrv = new MenuService();
     InputService inputSrv = new InputService();
+    InstancesService instanceSrv = new InstancesService();
+    StructureServices structureSrc = new StructureServices();
     Scanner keyboard = new Scanner(System.in);
 
     public void startProgram() {
+        instanceSrv.instantiateAll();
         do {
             if (Global.LogIn) {
                 displayMenu(new String[]{"AMD", "Print Objects", "Begin Project", "Exit"},
@@ -37,7 +38,7 @@ public final class BuildingCompany {
 
     private void displayMenu(String[] options, List<Integer> validOptions) {
         System.out.print(menuSrv.printMenu("Menu", options));
-        inputSrv.setIntAns(keyboard.nextInt(), validOptions);
+        inputSrv.setIntAns(validOptions);
         if (Global.LogIn) {
             handleLoggedInOptions();
         } else {
@@ -54,7 +55,9 @@ public final class BuildingCompany {
                 menuSrv.objectMenu();
                 break;
             case BEGIN_PROJECT_OPTION:
-                menuSrv.projectMenu();
+                if (menuSrv.projectMenu() == 0){
+                    structureSrc.createStructure();
+                }
                 break;
         }
     }

@@ -1,10 +1,11 @@
 package classes.People;
 
+import classes.interfaces.Updatable;
 import classes.projects.Project;
 
 import java.util.Date;
 
-public class Worker extends Person{
+public class Worker extends Person implements Updatable<Worker> {
     int salary;
     String experience;
     public Worker(String name, String lastName, String country, Date BDay, int salary, String experience, String password) {
@@ -19,5 +20,21 @@ public class Worker extends Person{
         super.type = getClass().toString().split("\\.")[2];
         this.salary = salary;
         this.experience = experience;
+    }
+
+    @Override
+    public String printInformation() {
+        return "";
+    }
+
+    @Override
+    public void update(Worker data) {
+        this.name = data.name;
+        this.lastName = data.lastName;
+        this.country = data.country;
+        this.BDay = data.BDay;
+        this.salary = data.salary;
+        this.experience = experience;
+        this.password = data.password;
     }
 }

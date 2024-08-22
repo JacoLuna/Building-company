@@ -2,6 +2,8 @@ package classes.projects.types;
 
 import enums.TypeOfProject;
 
+import java.util.Objects;
+
 public class House extends Structure {
     int rooms;
     int bathrooms;
@@ -11,8 +13,9 @@ public class House extends Structure {
         this.rooms = rooms;
         this.bathrooms = bathrooms;
     }
+
     @Override
-    public String showDescription() {
+    public String printInformation() {
         return "House containing:" + rooms + " rooms " + bathrooms + " bathrooms" + super.generalInfo();
     }
 }

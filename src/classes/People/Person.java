@@ -1,5 +1,8 @@
 package classes.People;
 
+import classes.interfaces.Identifiable;
+import classes.interfaces.Printable;
+import classes.interfaces.Updatable;
 import classes.projects.Project;
 import classes.services.Global;
 import classes.services.MenuService;
@@ -10,7 +13,7 @@ import java.util.Date;
 import java.util.Objects;
 import java.util.Scanner;
 
-public abstract class Person {
+public abstract class Person implements Printable, Identifiable {
     protected String type;
     private static int globalId = 0;
     protected int id;
@@ -19,7 +22,7 @@ public abstract class Person {
     protected String country;
     Date BDay;
     protected Project[] project;
-    private String password;
+    protected String password;
 
     public Person(String name, String lastName, String country, Date BDay, String password) {
         setId();
@@ -41,13 +44,15 @@ public abstract class Person {
     public static int getGlobalId() {
         return globalId;
     }
-    public int getId() {
+    @Override
+    public final int getId() {
         return id;
     }
     private static void setGlobalId() {
         Person.globalId++;
     }
-    public void setId() {
+    @Override
+    public final void setId() {
         int value = getGlobalId();
         this.id = value++;
         setGlobalId();

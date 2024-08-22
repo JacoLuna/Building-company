@@ -1,9 +1,11 @@
 package classes.projects;
 
+import classes.interfaces.Taxable;
+
 import java.util.Date;
 import java.util.Objects;
 
-public class Product {
+public class Product implements Taxable {
     String name;
     Date expirationDate;
     private float stock;
@@ -71,5 +73,10 @@ public class Product {
                 ", stockPoint=" + stockPoint +
                 ", price=" + price +
                 '}';
+    }
+
+    @Override
+    public float getTaxValue() {
+        return price * tax;
     }
 }

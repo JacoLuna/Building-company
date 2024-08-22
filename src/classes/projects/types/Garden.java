@@ -3,6 +3,8 @@ package classes.projects.types;
 import enums.TypeOfProject;
 import enums.TypeOfSoil;
 
+import java.util.Objects;
+
 public class Garden extends Structure {
     TypeOfSoil typeOfSoil;
     float squareMetersOfSoil;
@@ -14,7 +16,7 @@ public class Garden extends Structure {
     }
 
     @Override
-    public String showDescription() {
+    public String printInformation() {
         return "Garde containing:" + typeOfSoil.label + " soil " + squareMetersOfSoil + " square meters of soil" + super.generalInfo();
     }
 }

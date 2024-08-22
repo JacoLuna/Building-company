@@ -2,6 +2,8 @@ package classes.projects.types;
 
 import enums.TypeOfProject;
 
+import java.util.Objects;
+
 public class Pool extends Structure {
     float depth;
     float temperature;
@@ -11,9 +13,9 @@ public class Pool extends Structure {
         this.depth = depth;
         this.temperature = temperature;
     }
+
     @Override
-    public String showDescription() {
+    public String printInformation() {
         return "Pool containing:" + depth + " of depth, a temperature of " + temperature + "°C" + super.generalInfo();
     }
-
 }
