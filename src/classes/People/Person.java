@@ -2,26 +2,21 @@ package classes.People;
 
 import classes.interfaces.Identifiable;
 import classes.interfaces.Printable;
-import classes.interfaces.Updatable;
 import classes.projects.Project;
-import classes.services.Global;
-import classes.services.MenuService;
 
-import java.awt.*;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
-import java.util.Objects;
-import java.util.Scanner;
 
 public abstract class Person implements Printable, Identifiable {
     protected String type;
     private static int globalId = 0;
     protected int id;
-    String name;
-    String lastName;
+    public String name;
+    public String lastName;
     protected String country;
     Date BDay;
-    protected Project[] project;
+    protected ArrayList<Project> projects;
     protected String password;
 
     public Person(String name, String lastName, String country, Date BDay, String password) {
@@ -32,13 +27,13 @@ public abstract class Person implements Printable, Identifiable {
         this.BDay = BDay;
         this.password = password;
     }
-    public Person(String name, String lastName, String country, Date BDay, String password, Project[] project) {
+    public Person(String name, String lastName, String country, Date BDay, String password, ArrayList<Project> project) {
         setId();
         this.name = name;
         this.lastName = lastName;
         this.country = country;
         this.BDay = BDay;
-        this.project = project;
+        this.projects = project;
         this.password = password;
     }
     public static int getGlobalId() {
@@ -48,6 +43,11 @@ public abstract class Person implements Printable, Identifiable {
     public final int getId() {
         return id;
     }
+    public ArrayList<Project> getProject() {
+        return projects;
+    }
+
+    //START SETTERS
     private static void setGlobalId() {
         Person.globalId++;
     }
@@ -58,6 +58,12 @@ public abstract class Person implements Printable, Identifiable {
         setGlobalId();
     }
 
+    public void setProject(Project project) {
+        if (!projects.contains(project)){
+            this.projects.add(project);
+        }
+    }
+    //END SETTER
     public static boolean signIn(){
 //        Scanner keyboard = new Scanner(System.in);
 //        System.out.println("Name");
@@ -82,12 +88,12 @@ public abstract class Person implements Printable, Identifiable {
                 lastName.equals(person.lastName) &&
                 country.equals( person.country) &&
                 BDay.equals(person.BDay) &&
-                Arrays.equals(project, person.project);
+                projects.equals(person.projects);
     }
 
     @Override
     public int hashCode() {
-        return 21 * getId() + type.hashCode() + name.hashCode() + lastName.hashCode() + country.hashCode() + BDay.hashCode() + Arrays.hashCode(project);
+        return 21 * getId() + type.hashCode() + name.hashCode() + lastName.hashCode() + country.hashCode() + BDay.hashCode() + projects.hashCode();
     }
 
     @Override
@@ -99,7 +105,9 @@ public abstract class Person implements Printable, Identifiable {
                 ", lastName='" + lastName + '\'' +
                 ", country='" + country + '\'' +
                 ", BDay=" + BDay +
-                ", project=" + Arrays.toString(project) +
                 '}';
+
+//                ", project=" + ArraysList.toString(projects) +
+//                '}';
     }
 }

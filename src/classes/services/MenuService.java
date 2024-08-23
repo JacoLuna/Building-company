@@ -9,12 +9,14 @@ import enums.TypeOfSoil;
 import java.util.*;
 
 public class MenuService {
-    private static final int PERSON = 0;
-    private static final int STRUCTURE = 1;
-    private static final int PRODUCT = 2;
-    private static final int EXIT = 3;
+    private static final int PERSON_OPTION = 0;
+    private static final int STRUCTURE_OPTION = 1;
+    private static final int PRODUCT_OPTION = 2;
+    private static final int EXIT_OPTION = 3;
 
-    private static final int BEGIN_PROJECT = 0;
+    private static final int INFORMATION_OPTION = 0;
+    private static final int PROJECT_OPTION = 1;
+    private static final int BEGIN_PROJECT_OPTION = 2;
 
     InputService inputSrv = new InputService();
     Scanner keyboard = new Scanner(System.in);
@@ -46,7 +48,6 @@ public class MenuService {
             }
         }
     }
-
     public String printMenu(String title, String[] ans) {
         printFrame(title);
         return buildMenuString(ans);
@@ -70,25 +71,40 @@ public class MenuService {
     public void AMDMenu(){
         do {
             System.out.print(printMenu("AMD",new String[]{"Person","Structure","Product", "Exit"}));
-            inputSrv.setIntAns(Arrays.asList(PERSON, STRUCTURE, PRODUCT, EXIT));
+            inputSrv.setIntAns(Arrays.asList(PERSON_OPTION, STRUCTURE_OPTION, PRODUCT_OPTION, EXIT_OPTION));
             switch (inputSrv.getAns()){
-                case PERSON:
+                case PERSON_OPTION:
+                    //TODO AMD Persons
                     break;
-                case STRUCTURE:
+                case STRUCTURE_OPTION:
+                    //TODO AMD structures
                     break;
-                case PRODUCT:
+                case PRODUCT_OPTION:
+                    //TODO AMD Products
                     break;
             }
-        }while (inputSrv.getAns() != EXIT);
+        }while (inputSrv.getAns() != EXIT_OPTION);
     }
     public void objectMenu(){
         do {
             System.out.print(printMenu("Objects",new String[]{"Exit"}));
-            inputSrv.setIntAns(Arrays.asList(EXIT));
+            //TODO
+            inputSrv.setIntAns(Arrays.asList(EXIT_OPTION));
         }while (inputSrv.getAns() != 0);
     }
     public int projectMenu() {
-        System.out.print(printMenu("Projects", new String[]{"Begin project", "Exit"}));
-        return inputSrv.setIntAns(Arrays.asList(BEGIN_PROJECT ,EXIT));
+        do {
+            System.out.print(printMenu("Projects", new String[]{"Begin project", "Exit"}));
+            inputSrv.setIntAns(Arrays.asList(BEGIN_PROJECT_OPTION ,EXIT_OPTION));
+        }while (inputSrv.getAns() != EXIT_OPTION);
+        return inputSrv.getAns();
+    }
+
+    public int myProfileMenu() {
+        do {
+            System.out.print(printMenu("My profile",new String[]{"Information","Projects","", "Exit"}));
+            inputSrv.setIntAns(Arrays.asList(INFORMATION_OPTION, PROJECT_OPTION, EXIT_OPTION));
+        }while (inputSrv.getAns() != EXIT_OPTION);
+        return inputSrv.getAns();
     }
 }

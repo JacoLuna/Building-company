@@ -10,9 +10,8 @@ import enums.TypeOfSoil;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.List;
 
-public class InstancesService {
+public class DefaultDataService {
     static Person[] clients = new Client[5];
     static Person[] workers = new Worker[5];
     static ArrayList<Structure> structures;
@@ -32,6 +31,7 @@ public class InstancesService {
         for (int i = 0; i < 5; i++) {
             workers[i] = new Worker("worker_name_" + i,"worker_lastName_" + i,"worker_country_" + i,new Date(), 1500 ,"junior", "1234");
         }
+
     }
     public ArrayList<Structure> createStructures(){
         return new ArrayList<Structure>(){{

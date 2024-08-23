@@ -1,6 +1,6 @@
 package classes.services;
 
-import classes.projects.Bill;
+import classes.Global;
 import classes.projects.Project;
 import classes.projects.types.*;
 import enums.TypeOfProject;
@@ -10,19 +10,17 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class StructureServices {
+public class StructureService {
 
     InputService inputSrv = new InputService();
     MenuService menuSrv = new MenuService();
     
-    public void createStructure() {
+    public Structure createStructure() {
         String[] typeOfProjects = Arrays.stream(TypeOfProject.values()).map(Enum::name).toArray(String[]::new);
         String[] typeOfSoil = Arrays.stream(TypeOfSoil.values()).map(Enum::name).toArray(String[]::new);
         int projectIndex;
         long squareMeters;
         Structure structure = null;
-//        Project project = null;
-//        Bill bill = null;
 
         projectIndex = getProjectIndex(typeOfProjects);
         if (projectIndex != -1) {
@@ -30,9 +28,11 @@ public class StructureServices {
             structure = createStructure(typeOfProjects[projectIndex], squareMeters, typeOfSoil);
             if (structure != null) {
                 System.out.println(structure.printInformation());
-                InstancesService.structures.add(structure);
+                DefaultDataService.structures.add(structure);
+//                Global.user.setProject();
             }
         }
+        return structure;
     }
 
     private int getProjectIndex(String[] typeOfProjects) {
@@ -52,6 +52,15 @@ public class StructureServices {
             squareMeters = inputSrv.setLongAns(0, 100);
         } while (squareMeters == -1);
         return squareMeters;
+    }
+    private int getSoilIndex(String[] typeOfSoil) {
+        int soilIndex;
+        do {
+            String prompt = "what type of soil will be used?";
+            System.out.print(menuSrv.printMenu(prompt, typeOfSoil,prompt.length()*2));
+            soilIndex = inputSrv.setIntAns( createIndexList(typeOfSoil.length));
+        } while (soilIndex == -1);
+        return soilIndex;
     }
 
     private Structure createStructure(String projectType, long squareMeters, String[] typeOfSoil) {
@@ -88,15 +97,6 @@ public class StructureServices {
         int soilIndex = getSoilIndex(typeOfSoil);
         float squareMetersOfSoil = inputSrv.setFloatAns("how many square meters of soil will be used?", 0, squareMeters);
         return new Garden(squareMeters, TypeOfSoil.valueOf(typeOfSoil[soilIndex]), squareMetersOfSoil);
-    }
-    private int getSoilIndex(String[] typeOfSoil) {
-        int soilIndex;
-        do {
-            String prompt = "what type of soil will be used?";
-            System.out.print(menuSrv.printMenu(prompt, typeOfSoil,prompt.length()*2));
-            soilIndex = inputSrv.setIntAns( createIndexList(typeOfSoil.length));
-        } while (soilIndex == -1);
-        return soilIndex;
     }
 
     private List<Integer> createIndexList(int length) {

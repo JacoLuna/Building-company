@@ -3,6 +3,7 @@ package classes.People;
 import classes.interfaces.Updatable;
 import classes.projects.Project;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 public class Worker extends Person implements Updatable<Worker> {
@@ -15,8 +16,8 @@ public class Worker extends Person implements Updatable<Worker> {
         this.experience = experience;
     }
 
-    public Worker(String name, String lastName, String country, Date BDay, int salary, String experience, Project[] project, String password) {
-        super(name, lastName, country, BDay, password, project);
+    public Worker(String name, String lastName, String country, Date BDay, int salary, String experience, ArrayList<Project> projects, String password) {
+        super(name, lastName, country, BDay, password, projects);
         super.type = getClass().toString().split("\\.")[2];
         this.salary = salary;
         this.experience = experience;
@@ -24,7 +25,12 @@ public class Worker extends Person implements Updatable<Worker> {
 
     @Override
     public String printInformation() {
-        return "";
+        return "name: " + name +
+                "lastName: " + lastName +
+                "country: " + country +
+                "BDay: " + BDay +
+                "salary: " + salary +
+                "experience " + experience;
     }
 
     @Override

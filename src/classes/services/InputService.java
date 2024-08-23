@@ -1,7 +1,9 @@
 package classes.services;
 
-import java.util.List;
-import java.util.Scanner;
+import enums.TypeOfProject;
+
+import java.time.Month;
+import java.util.*;
 
 public class InputService {
     Scanner keyboard = new Scanner(System.in);
@@ -17,7 +19,7 @@ public class InputService {
             do {
                 System.out.print(prompt);
                 intAns = keyboard.nextInt();
-                if (!ansArray.contains(keyboard.nextInt())){
+                if (!ansArray.contains(intAns)){
                     System.out.println("ERROR Option not available");
                     intAns = -1;
                 }
@@ -144,5 +146,22 @@ public class InputService {
             System.out.println(e.toString());
         }
         return longAns;
+    }
+
+    public String stringAns(String prompt){
+        System.out.println(prompt);
+        return keyboard.next();
+    }
+
+    public Date dateAns(){
+        int day, month, year;
+        List<Integer> months = new ArrayList<>();
+        for (Month m: Month.values()){
+            months.add(m.ordinal()+1);
+        }
+        day = setIntAns("Introduce the day ",0,31);
+        month = setIntAns("Introduce the number of the month ", months);
+        year = setIntAns("Introduce the year ", 1971, java.time.LocalDate.now().getYear());
+        return new Date(year,month-1,day);
     }
 }
