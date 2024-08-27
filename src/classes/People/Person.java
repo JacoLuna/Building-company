@@ -4,6 +4,7 @@ import classes.interfaces.Identifiable;
 import classes.interfaces.Printable;
 import classes.projects.Project;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
@@ -15,11 +16,11 @@ public abstract class Person implements Printable, Identifiable {
     public String name;
     public String lastName;
     protected String country;
-    Date BDay;
+    LocalDate BDay;
     protected ArrayList<Project> projects;
     protected String password;
 
-    public Person(String name, String lastName, String country, Date BDay, String password) {
+    public Person(String name, String lastName, String country, LocalDate BDay, String password) {
         setId();
         this.name = name;
         this.lastName = lastName;
@@ -27,7 +28,7 @@ public abstract class Person implements Printable, Identifiable {
         this.BDay = BDay;
         this.password = password;
     }
-    public Person(String name, String lastName, String country, Date BDay, String password, ArrayList<Project> project) {
+    public Person(String name, String lastName, String country, LocalDate BDay, String password, ArrayList<Project> project) {
         setId();
         this.name = name;
         this.lastName = lastName;

@@ -7,6 +7,7 @@ import classes.projects.Product;
 import classes.projects.types.*;
 import enums.TypeOfSoil;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -49,7 +50,7 @@ public class DefaultDataService {
                 add(new Product("concrete", 50, 10, 300));
                 add(new Product("glass", 50, 10, 300));
                 add(new Product("pallet", 50, 10, 300));
-                add(new Product("ceramic", new Date(2024, Calendar.SEPTEMBER, 5), 50, 10, 300));
+                add(new Product("ceramic", LocalDate.of(2024, 8, 5), 50, 10, 300));
             }};
     }
 }

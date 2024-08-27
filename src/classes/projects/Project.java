@@ -6,19 +6,20 @@ import classes.interfaces.Printable;
 import classes.services.MenuService;
 import enums.TypeOfProject;
 
+import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.Date;
 
 public class Project implements Printable {
-    Date startingDate;
-    Date projectedEnd;
-    Date endingDate;
+    LocalDate startingDate;
+    LocalDate projectedEnd;
+    LocalDate endingDate;
     TypeOfProject projectType;
     String projectName;
     Client client;
     Worker[] workers;
 
-    public Project(Date startingDate, Date projectedEnd, TypeOfProject projectType, String projectName, Client client) {
+    public Project(LocalDate startingDate, LocalDate projectedEnd, TypeOfProject projectType, String projectName, Client client) {
         this.startingDate = startingDate;
         this.projectedEnd = projectedEnd;
         this.projectType = projectType;
@@ -30,8 +31,8 @@ public class Project implements Printable {
         this.workers = workers;
     }
 
-    public void setEndingDate(Date endingDate) {
-        if (startingDate.before(endingDate)){
+    public void setEndingDate(LocalDate endingDate) {
+        if (startingDate.isBefore(endingDate)){
             this.endingDate = endingDate;
         }else {
             System.out.println("The ending date must be after the starting date");

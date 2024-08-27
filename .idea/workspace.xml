@@ -7,15 +7,13 @@
     <list default="true" id="64b9ac99-5435-44d6-8879-c501d9a8e836" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/classes/BuildingCompany.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/classes/BuildingCompany.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/classes/People/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/classes/People/Client.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/classes/People/Person.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/classes/People/Person.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/classes/People/Worker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/classes/People/Worker.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/classes/projects/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/classes/projects/Product.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/classes/projects/Project.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/classes/projects/Project.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/classes/services/Global.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/classes/Global.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/classes/services/DefaultDataService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/classes/services/DefaultDataService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/classes/services/InputService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/classes/services/InputService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/classes/services/InstancesService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/classes/services/DefaultDataService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/classes/services/MenuService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/classes/services/MenuService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/classes/services/StructureServices.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/classes/services/StructureService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/classes/services/ProjectService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/classes/services/ProjectService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

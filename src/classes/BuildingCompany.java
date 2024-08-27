@@ -1,5 +1,6 @@
 package classes;
 
+import classes.Exceptions.menuException;
 import classes.People.*;
 import classes.services.*;
 
@@ -19,6 +20,13 @@ public final class BuildingCompany {
     private static final int ADMIN_WORKER_OPTION = 312;
     private static final int EXIT_LOGGED_OUT_OPTION = 2;
 
+    private static final int PERSON_OPTION = 0;
+    private static final int STRUCTURE_OPTION = 1;
+    private static final int PRODUCT_OPTION = 2;
+
+    private static final int INFORMATION_OPTION = 0;
+    private static final int PROJECT_OPTION = 1;
+
     MenuService menuSrv = new MenuService();
     InputService inputSrv = new InputService();
     DefaultDataService instanceSrv = new DefaultDataService();
@@ -29,47 +37,69 @@ public final class BuildingCompany {
         instanceSrv.instantiateAll();
         do {
             if (Global.LogIn) {
-                displayMenu(new String[]{"AMD", "Print Objects", "My profile", "Begin Project", "Manage project", "Exit"},
+                handleUserSession(new String[]{"AMD", "Print Objects", "My profile", "Begin Project", "Manage project", "Exit"},
                         Arrays.asList(AMD_OPTION, PRINT_OBJECTS_OPTION, MY_PROFILE_OPTION, BEGIN_PROJECT_OPTION, MANAGE_PROJECT_OPTION, EXIT_OPTION));
             } else {
-                displayMenu(new String[]{"Sign in", "Log in", "Exit"},
+                handleUserSession(new String[]{"Sign in", "Log in", "Exit"},
                         Arrays.asList(SIGN_IN_OPTION, LOG_IN_OPTION, ADMIN_CLIENT_OPTION, ADMIN_WORKER_OPTION, EXIT_LOGGED_OUT_OPTION));
             }
         } while (Global.LogIn && inputSrv.getAns() != EXIT_OPTION || !Global.LogIn && inputSrv.getAns() != EXIT_LOGGED_OUT_OPTION);
     }
 
-    private void displayMenu(String[] options, List<Integer> validOptions) {
+    private void handleUserSession(String[] options, List<Integer> validOptions) {
         System.out.print(menuSrv.printMenu("Menu", options));
         inputSrv.setIntAns(validOptions);
-        if (Global.LogIn) {
-            handleLoggedInOptions();
-        } else {
-            handleLoggedOutOptions();
-        }
+            if (Global.LogIn) {
+                handleLoggedInOptions();
+            } else {
+                handleLoggedOutOptions();
+            }
     }
 
     private void handleLoggedInOptions() {
         switch (inputSrv.getAns()) {
             case AMD_OPTION:
-                menuSrv.AMDMenu();
+                do {
+                System.out.println(menuSrv.printMenu("AMD",new String[]{"Person","Structure","Product", "Exit"}));
+                    inputSrv.setIntAns(Arrays.asList(PERSON_OPTION, STRUCTURE_OPTION, PRODUCT_OPTION, EXIT_OPTION));
+                    switch (inputSrv.getAns()){
+                        case PERSON_OPTION:
+                            //TODO AMD Persons
+                            break;
+                        case STRUCTURE_OPTION:
+                            //TODO AMD structures
+                            break;
+                        case PRODUCT_OPTION:
+                            //TODO AMD Products
+                            break;
+                    }
+                }while (inputSrv.getAns() != EXIT_OPTION);
                 break;
             case PRINT_OBJECTS_OPTION:
-                menuSrv.objectMenu();
+                do {
+                    System.out.print(menuSrv.printMenu("Objects",new String[]{"Exit"}));
+                    //TODO
+                    inputSrv.setIntAns(Arrays.asList(EXIT_OPTION));
+                }while (inputSrv.getAns() != 0);
                 break;
             case  MY_PROFILE_OPTION:
-                switch (menuSrv.myProfileMenu()){
-                    case 0:
-                        Global.user.printInformation();
-                        break;
-                    case 1:
-                        System.out.println(Global.user.printInformation());
-                        break;
+                do {
+                    System.out.print(menuSrv.printMenu("My profile",new String[]{"Information","Projects", "Exit"}));
+                    inputSrv.setIntAns(Arrays.asList(INFORMATION_OPTION, PROJECT_OPTION, EXIT_OPTION));
+                }while (inputSrv.getAns() != EXIT_OPTION);
+                if (inputSrv.getAns() == INFORMATION_OPTION){
+                    Global.user.printInformation();
+                }else {
+                    System.out.println(Global.user.printInformation());
                 }
                 break;
             case BEGIN_PROJECT_OPTION:
-                if (menuSrv.projectMenu() == 0){
-                    structureSrc.createStructure();
-                }
+                    do {
+                        System.out.print(menuSrv.printMenu("Projects", new String[]{"Begin project", "Exit"}));
+                        inputSrv.setIntAns(Arrays.asList(BEGIN_PROJECT_OPTION ,EXIT_OPTION));
+                    }while (inputSrv.getAns() != EXIT_OPTION);
+                    if (inputSrv.getAns() == 0)
+                        structureSrc.createStructure();
                 break;
             case MANAGE_PROJECT_OPTION:
                 projectSrv.createProject();

@@ -2,17 +2,18 @@ package classes.projects;
 
 import classes.interfaces.Taxable;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.Objects;
 
 public class Product implements Taxable {
     String name;
-    Date expirationDate;
+    LocalDate expirationDate;
     private float stock;
     private float stockPoint;
     float price;
 
-    public Product(String name, Date expirationDate, float stock, float stockPoint, float price) {
+    public Product(String name, LocalDate expirationDate, float stock, float stockPoint, float price) {
         this.name = name;
         this.expirationDate = expirationDate;
         this.stock = stock;

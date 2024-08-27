@@ -1,7 +1,10 @@
 package classes.services;
 
+import classes.Exceptions.menuException;
 import enums.TypeOfProject;
 
+import java.time.DateTimeException;
+import java.time.LocalDate;
 import java.time.Month;
 import java.util.*;
 
@@ -25,46 +28,63 @@ public class InputService {
                 }
             } while (intAns == -1);
         }catch (Exception e){
-            System.out.println(e.toString());
+            System.out.println(e.toString());return -1;
         }
         return intAns;
     }
     public int setIntAns(List<Integer> ansArray) {
-        try {
-            intAns = keyboard.nextInt();
-            if (!ansArray.contains(intAns)){
-                System.out.println("ERROR Option not available");
-                intAns = -1;
+        boolean isValid = false;
+        do {
+            try {
+                intAns = keyboard.nextInt();
+                if (!ansArray.contains(intAns)){
+                    throw new menuException("ERROR Option not available");
+                }
+                isValid = true;
+            }catch (InputMismatchException | menuException e){
+                System.out.println(e);
+                keyboard.next();
+            } catch (Exception e){
+                System.out.println("Unexpected error " + e);
             }
-        }catch (Exception e){
-            System.out.println(e.toString());
-        }
+        }while (!isValid);
         return intAns;
     }
     public int setIntAns(String prompt, int minValue, int maxValue) {
-        try {
-            do {
-                System.out.print(prompt);
-                intAns = keyboard.nextInt();
-                if (intAns < minValue || intAns > maxValue ){
-                    System.out.println("ERROR Option not available");
-                }
-            } while (intAns == -1);
-        }catch (Exception e){
-            System.out.println(e.toString());
-        }
+        boolean isValid = false;
+        do {
+            try {
+                    System.out.print(prompt);
+                    intAns = keyboard.nextInt();
+                    if (intAns < minValue || intAns > maxValue ){
+                        throw new menuException("ERROR Option not available");
+                    }
+                    isValid = true;
+            }catch (InputMismatchException | menuException e){
+                System.out.println(e);
+                keyboard.next();
+            }catch (Exception e){
+                System.out.println("Unexpected error " + e);
+            }
+        } while (!isValid);
         return intAns;
     }
     public int setIntAns(int minValue, int maxValue) {
-        try {
-            intAns = keyboard.nextInt();
-            if (intAns < minValue || intAns > maxValue ){
-                intAns = -1;
-                System.out.println("ERROR Option not available");
+        boolean isValid = false;
+        do {
+            try {
+                intAns = keyboard.nextInt();
+                if (intAns < minValue || intAns > maxValue ){
+                    throw new menuException("ERROR Option not available");
+                }
+                isValid = true;
+            }catch (InputMismatchException | menuException e){
+                System.out.println(e);
+                keyboard.next();
+            }catch (Exception e){
+                System.out.println("Unexpected error " + e);
             }
-        }catch (Exception e){
-            System.out.println(e.toString());
-        }
+            }while (!isValid);
         return intAns;
     }
 
@@ -153,15 +173,22 @@ public class InputService {
         return keyboard.next();
     }
 
-    public Date dateAns(){
-        int day, month, year;
-        List<Integer> months = new ArrayList<>();
-        for (Month m: Month.values()){
-            months.add(m.ordinal()+1);
+    public LocalDate readValidDate() {
+        int year, month, day;
+        boolean validDate = false;
+        LocalDate date = null;
+
+        while (!validDate) {
+            try {
+                year = setIntAns("Enter year: ", LocalDate.MIN.getYear(), LocalDate.MAX.getYear());
+                month = setIntAns("Enter month (1-12): ", 1, 12);
+                day = setIntAns("Enter day: ", 1, 31);
+                date = LocalDate.of(year, month, day);
+                validDate = true;
+            } catch (DateTimeException | IllegalArgumentException e) {
+                System.out.println("Invalid date. Please try again.");
+            }
         }
-        day = setIntAns("Introduce the day ",0,31);
-        month = setIntAns("Introduce the number of the month ", months);
-        year = setIntAns("Introduce the year ", 1971, java.time.LocalDate.now().getYear());
-        return new Date(year,month-1,day);
+        return date;
     }
 }
