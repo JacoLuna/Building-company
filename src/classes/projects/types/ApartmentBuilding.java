@@ -4,7 +4,7 @@ import enums.TypeOfProject;
 
 import java.util.Objects;
 
-public class ApartmentBuilding extends Structure {
+public final class ApartmentBuilding extends Structure {
     int storeys;
     boolean MRP; //multipurpose room
 

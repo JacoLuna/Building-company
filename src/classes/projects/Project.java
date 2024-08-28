@@ -1,23 +1,30 @@
 package classes.projects;
 
+import classes.Exceptions.workerException;
 import classes.People.Client;
 import classes.People.Worker;
 import classes.interfaces.Printable;
 import classes.services.MenuService;
 import enums.TypeOfProject;
+import enums.WorkerExceptionCode;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
+import java.util.Objects;
 
 public class Project implements Printable {
+    public static final Logger CONSOLE_ERROR = LogManager.getLogger("ConsoleErrorLogger");
     LocalDate startingDate;
     LocalDate projectedEnd;
     LocalDate endingDate;
     TypeOfProject projectType;
     String projectName;
     Client client;
-    Worker[] workers;
+    ArrayList<Worker> workers;
 
     public Project(LocalDate startingDate, LocalDate projectedEnd, TypeOfProject projectType, String projectName, Client client) {
         this.startingDate = startingDate;
@@ -25,18 +32,46 @@ public class Project implements Printable {
         this.projectType = projectType;
         this.projectName = projectName;
         this.client = client;
+        this.workers = new ArrayList<>();
     }
 
-    public void setWorkers(Worker[] workers) {
+    public void setWorkers(ArrayList<Worker> workers) {
         this.workers = workers;
     }
-
+    public void addWorker(Worker worker){
+        try {
+            if (!this.workers.isEmpty()){
+                for (Worker wk : this.workers){
+                    if (wk.equals(worker)){
+                        throw new workerException(WorkerExceptionCode.EXISTING_WORKER.codeNumber);
+                    }
+                }
+            }
+            this.workers.add(worker);
+        }
+        catch (workerException workerException){
+            CONSOLE_ERROR.error(workerException.getMessage());
+        }
+    }
     public void setEndingDate(LocalDate endingDate) {
         if (startingDate.isBefore(endingDate)){
             this.endingDate = endingDate;
         }else {
             System.out.println("The ending date must be after the starting date");
         }
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        if (this == object) return true;
+        if (object == null || getClass() != object.getClass()) return false;
+        Project project = (Project) object;
+        return Objects.equals(startingDate, project.startingDate) && Objects.equals(projectedEnd, project.projectedEnd) && Objects.equals(endingDate, project.endingDate) && projectType == project.projectType && Objects.equals(projectName, project.projectName) && Objects.equals(client, project.client) && Objects.equals(workers, project.workers);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(startingDate, projectedEnd, endingDate, projectType, projectName, client, workers);
     }
 
     @Override
@@ -48,7 +83,6 @@ public class Project implements Printable {
                 ", projectType=" + projectType +
                 ", projectName='" + projectName + '\'' +
                 ", client=" + client +
-                ", workers=" + Arrays.toString(workers) +
                 '}';
     }
 
@@ -58,13 +92,17 @@ public class Project implements Printable {
         menuSrc.printFrame("Project","Project".length());
         menuSrc.printFrame(startingDate.toString(), 100);
         menuSrc.printFrame(projectedEnd.toString(),100);
-        menuSrc.printFrame(endingDate.toString(),100);
+        if (endingDate != null){
+            menuSrc.printFrame(endingDate.toString(),100);
+        }
         menuSrc.printFrame(projectType.toString(),100);
         menuSrc.printFrame(projectName,100);
         menuSrc.printFrame(client.toString(),100);
         menuSrc.printFrame("workers", 100);
-        for (Worker worker : workers){
-            System.out.println(worker.name + " " + worker.lastName);
+        if (workers != null){
+            for (Worker worker : workers){
+                System.out.println(worker.name + " " + worker.lastName);
+            }
         }
 
         return "Project{" +
@@ -74,7 +112,6 @@ public class Project implements Printable {
                 ", projectType=" + projectType +
                 ", projectName='" + projectName + '\'' +
                 ", client=" + client +
-                ", workers=" + Arrays.toString(workers) +
                 '}';
     }
 }

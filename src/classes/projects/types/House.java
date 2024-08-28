@@ -4,7 +4,7 @@ import enums.TypeOfProject;
 
 import java.util.Objects;
 
-public class House extends Structure {
+public final class House extends Structure {
     int rooms;
     int bathrooms;
 

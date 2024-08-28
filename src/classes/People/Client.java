@@ -3,6 +3,8 @@ package classes.People;
 import classes.interfaces.Updatable;
 import classes.projects.Project;
 
+import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
@@ -10,13 +12,13 @@ import java.util.Date;
 public class Client extends Person implements Updatable<Client> {
     boolean isEnterprise;
     int amountOfProjects;
-    public Client(String name, String lastName, String country, Date BDay, boolean enterprise, String password) {
+    public Client(String name, String lastName, String country, LocalDate BDay, boolean enterprise, String password) {
         super(name, lastName, country, BDay, password);
         super.type = getClass().toString().split("\\.")[2];
         this.isEnterprise = enterprise;
         this.amountOfProjects = 0;
     }
-    public Client(String name, String lastName, String country, Date BDay, ArrayList<Project> projects, boolean enterprise, String password) {
+    public Client(String name, String lastName, String country, LocalDate BDay, ArrayList<Project> projects, boolean enterprise, String password) {
         super(name, lastName, country, BDay, password, projects);
         super.type = getClass().toString().split("\\.")[2];
         this.isEnterprise = enterprise;
@@ -53,8 +55,8 @@ public class Client extends Person implements Updatable<Client> {
                 ", lastName='" + lastName + '\'' +
                 ", country='" + country + '\'' +
                 ", BDay=" + BDay +
-                ", project=" + projects.toString() +
                 ", password='" + password + '\'' +
                 '}';
     }
+//                ", project=" + projects.toString() +
 }

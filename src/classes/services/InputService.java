@@ -2,6 +2,8 @@ package classes.services;
 
 import classes.Exceptions.menuException;
 import enums.TypeOfProject;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.time.DateTimeException;
 import java.time.LocalDate;
@@ -9,6 +11,10 @@ import java.time.Month;
 import java.util.*;
 
 public class InputService {
+    private static final Logger LOGGER = LogManager.getLogger(Logger.class);
+    private static final Logger FILE = LogManager.getLogger("FileOnlyLogger");
+    private static final Logger CONSOLE_ERROR = LogManager.getLogger("ConsoleErrorLogger");
+    private static final Logger CONSOLE = LogManager.getLogger("ConsoleLogger");
     Scanner keyboard = new Scanner(System.in);
     private int intAns;
     private float floatAns;
@@ -18,21 +24,28 @@ public class InputService {
         return intAns;
     }
     public int setIntAns(String prompt, List<Integer> ansArray) {
-        try {
-            do {
-                System.out.print(prompt);
-                intAns = keyboard.nextInt();
-                if (!ansArray.contains(intAns)){
-                    System.out.println("ERROR Option not available");
-                    intAns = -1;
-                }
-            } while (intAns == -1);
-        }catch (Exception e){
-            System.out.println(e.toString());return -1;
-        }
+        boolean isValid = false;
+        do {
+            try {
+                    System.out.print(prompt);
+                    intAns = keyboard.nextInt();
+                    if (!ansArray.contains(intAns)){
+                        throw new menuException("ERROR Option not available");
+                    }
+                    isValid = true;
+            }catch (InputMismatchException | menuException e){
+                CONSOLE_ERROR.error(e);
+                FILE.error(e);
+                keyboard.next();
+            }catch (Exception e){
+                  LOGGER.error(e);
+                  return -1;
+            }
+        } while (!isValid);
         return intAns;
     }
     public int setIntAns(List<Integer> ansArray) {
+        CONSOLE_ERROR.error("test");
         boolean isValid = false;
         do {
             try {
@@ -42,10 +55,10 @@ public class InputService {
                 }
                 isValid = true;
             }catch (InputMismatchException | menuException e){
-                System.out.println(e);
+                LOGGER.error(e);
                 keyboard.next();
             } catch (Exception e){
-                System.out.println("Unexpected error " + e);
+                LOGGER.error("Unexpected error " + e);
             }
         }while (!isValid);
         return intAns;
@@ -61,10 +74,10 @@ public class InputService {
                     }
                     isValid = true;
             }catch (InputMismatchException | menuException e){
-                System.out.println(e);
+                LOGGER.error(e);
                 keyboard.next();
             }catch (Exception e){
-                System.out.println("Unexpected error " + e);
+                LOGGER.error("Unexpected error " + e);
             }
         } while (!isValid);
         return intAns;
@@ -79,10 +92,10 @@ public class InputService {
                 }
                 isValid = true;
             }catch (InputMismatchException | menuException e){
-                System.out.println(e);
+                LOGGER.error(e);
                 keyboard.next();
             }catch (Exception e){
-                System.out.println("Unexpected error " + e);
+                LOGGER.error("Unexpected error " + e);
             }
             }while (!isValid);
         return intAns;
@@ -99,7 +112,7 @@ public class InputService {
                 }
             } while (intAns == -1);
         } catch (Exception e) {
-            System.out.println(e.toString());
+            LOGGER.error(e);
         }
         return floatAns;
     }
@@ -111,7 +124,7 @@ public class InputService {
                 System.out.println("ERROR Option not available");
             }
         } catch (Exception e) {
-            System.out.println(e.toString());
+            LOGGER.error(e);
         }
         return floatAns;
     }
@@ -126,7 +139,7 @@ public class InputService {
                 }
             } while (intAns == -1);
         } catch (Exception e) {
-            System.out.println(e.toString());
+            LOGGER.error(e);
         }
         return floatAns;
     }
@@ -138,7 +151,7 @@ public class InputService {
                 floatAns = -1;
             }
         } catch (Exception e) {
-            System.out.println(e.toString());
+            LOGGER.error(e);
         }
         return floatAns;
     }
@@ -151,7 +164,7 @@ public class InputService {
                 longAns = -1;
             }
         } catch (Exception e) {
-            System.out.println(e.toString());
+                LOGGER.error(e);
         }
         return longAns;
     }
@@ -163,7 +176,7 @@ public class InputService {
                 longAns = -1;
             }
         } catch (Exception e) {
-            System.out.println(e.toString());
+                LOGGER.error(e);
         }
         return longAns;
     }

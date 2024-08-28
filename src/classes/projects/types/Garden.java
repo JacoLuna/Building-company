@@ -5,7 +5,7 @@ import enums.TypeOfSoil;
 
 import java.util.Objects;
 
-public class Garden extends Structure {
+public final class Garden extends Structure {
     TypeOfSoil typeOfSoil;
     float squareMetersOfSoil;
 

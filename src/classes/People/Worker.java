@@ -3,20 +3,21 @@ package classes.People;
 import classes.interfaces.Updatable;
 import classes.projects.Project;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 
 public class Worker extends Person implements Updatable<Worker> {
     int salary;
     String experience;
-    public Worker(String name, String lastName, String country, Date BDay, int salary, String experience, String password) {
+    public Worker(String name, String lastName, String country, LocalDate BDay, int salary, String experience, String password) {
         super(name, lastName, country, BDay, password);
         super.type = getClass().toString().split("\\.")[2];
         this.salary = salary;
         this.experience = experience;
     }
 
-    public Worker(String name, String lastName, String country, Date BDay, int salary, String experience, ArrayList<Project> projects, String password) {
+    public Worker(String name, String lastName, String country, LocalDate BDay, int salary, String experience, ArrayList<Project> projects, String password) {
         super(name, lastName, country, BDay, password, projects);
         super.type = getClass().toString().split("\\.")[2];
         this.salary = salary;

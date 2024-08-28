@@ -11,7 +11,7 @@ import java.util.Date;
 
 public abstract class Person implements Printable, Identifiable {
     protected String type;
-    private static int globalId = 0;
+    private static int globalId;
     protected int id;
     public String name;
     public String lastName;
@@ -19,6 +19,10 @@ public abstract class Person implements Printable, Identifiable {
     LocalDate BDay;
     protected ArrayList<Project> projects;
     protected String password;
+
+    static {
+        globalId = 0;
+    }
 
     public Person(String name, String lastName, String country, LocalDate BDay, String password) {
         setId();

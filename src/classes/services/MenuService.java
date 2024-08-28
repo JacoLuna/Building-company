@@ -5,10 +5,13 @@ import classes.projects.Project;
 import classes.projects.types.*;
 import enums.TypeOfProject;
 import enums.TypeOfSoil;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.util.*;
 
 public class MenuService {
+    public static final Logger CONSOLE_ERROR = LogManager.getLogger("ConsoleErrorLogger");
     InputService inputSrv = new InputService();
     Scanner keyboard = new Scanner(System.in);
 

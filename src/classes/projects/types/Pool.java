@@ -4,7 +4,7 @@ import enums.TypeOfProject;
 
 import java.util.Objects;
 
-public class Pool extends Structure {
+public final class Pool extends Structure {
     float depth;
     float temperature;
 
