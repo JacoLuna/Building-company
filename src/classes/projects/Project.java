@@ -1,6 +1,6 @@
 package classes.projects;
 
-import classes.Exceptions.workerException;
+import classes.Exceptions.WorkerException;
 import classes.People.Client;
 import classes.People.Worker;
 import classes.interfaces.Printable;
@@ -12,8 +12,6 @@ import org.apache.logging.log4j.Logger;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Date;
 import java.util.Objects;
 
 public class Project implements Printable {
@@ -43,13 +41,13 @@ public class Project implements Printable {
             if (!this.workers.isEmpty()){
                 for (Worker wk : this.workers){
                     if (wk.equals(worker)){
-                        throw new workerException(WorkerExceptionCode.EXISTING_WORKER.codeNumber);
+                        throw new WorkerException(WorkerExceptionCode.EXISTING_WORKER.ordinal());
                     }
                 }
             }
             this.workers.add(worker);
         }
-        catch (workerException workerException){
+        catch (WorkerException workerException){
             CONSOLE_ERROR.error(workerException.getMessage());
         }
     }

@@ -8,6 +8,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
+import java.util.LinkedList;
 
 public abstract class Person implements Printable, Identifiable {
     protected String type;
@@ -17,7 +18,6 @@ public abstract class Person implements Printable, Identifiable {
     public String lastName;
     protected String country;
     LocalDate BDay;
-    protected ArrayList<Project> projects;
     protected String password;
 
     static {
@@ -32,24 +32,12 @@ public abstract class Person implements Printable, Identifiable {
         this.BDay = BDay;
         this.password = password;
     }
-    public Person(String name, String lastName, String country, LocalDate BDay, String password, ArrayList<Project> project) {
-        setId();
-        this.name = name;
-        this.lastName = lastName;
-        this.country = country;
-        this.BDay = BDay;
-        this.projects = project;
-        this.password = password;
-    }
     public static int getGlobalId() {
         return globalId;
     }
     @Override
     public final int getId() {
         return id;
-    }
-    public ArrayList<Project> getProject() {
-        return projects;
     }
 
     //START SETTERS
@@ -63,11 +51,6 @@ public abstract class Person implements Printable, Identifiable {
         setGlobalId();
     }
 
-    public void setProject(Project project) {
-        if (!projects.contains(project)){
-            this.projects.add(project);
-        }
-    }
     //END SETTER
     public static boolean signIn(){
 //        Scanner keyboard = new Scanner(System.in);
@@ -92,13 +75,12 @@ public abstract class Person implements Printable, Identifiable {
                 name.equals(person.name) &&
                 lastName.equals(person.lastName) &&
                 country.equals( person.country) &&
-                BDay.equals(person.BDay) &&
-                projects.equals(person.projects);
+                BDay.equals(person.BDay);
     }
 
     @Override
     public int hashCode() {
-        return 21 * getId() + type.hashCode() + name.hashCode() + lastName.hashCode() + country.hashCode() + BDay.hashCode() + projects.hashCode();
+        return 21 * getId() + type.hashCode() + name.hashCode() + lastName.hashCode() + country.hashCode() + BDay.hashCode() ;
     }
 
     @Override

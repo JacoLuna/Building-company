@@ -1,10 +1,7 @@
 package classes;
 
-import classes.Exceptions.menuException;
 import classes.People.*;
-import classes.projects.Project;
 import classes.services.*;
-import enums.TypeOfProject;
 
 import java.time.LocalDate;
 import java.util.*;

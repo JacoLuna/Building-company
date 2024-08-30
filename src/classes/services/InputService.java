@@ -1,13 +1,11 @@
 package classes.services;
 
-import classes.Exceptions.menuException;
-import enums.TypeOfProject;
+import classes.Exceptions.MenuException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.time.DateTimeException;
 import java.time.LocalDate;
-import java.time.Month;
 import java.util.*;
 
 public class InputService {
@@ -30,10 +28,10 @@ public class InputService {
                     System.out.print(prompt);
                     intAns = keyboard.nextInt();
                     if (!ansArray.contains(intAns)){
-                        throw new menuException("ERROR Option not available");
+                        throw new MenuException("ERROR Option not available");
                     }
                     isValid = true;
-            }catch (InputMismatchException | menuException e){
+            }catch (InputMismatchException | MenuException e){
                 CONSOLE_ERROR.error(e);
                 FILE.error(e);
                 keyboard.next();
@@ -50,10 +48,10 @@ public class InputService {
             try {
                 intAns = keyboard.nextInt();
                 if (!ansArray.contains(intAns)){
-                    throw new menuException("ERROR Option not available");
+                    throw new MenuException("ERROR Option not available");
                 }
                 isValid = true;
-            }catch (InputMismatchException | menuException e){
+            }catch (InputMismatchException | MenuException e){
                 LOGGER.error(e);
                 keyboard.next();
             } catch (Exception e){
@@ -69,10 +67,10 @@ public class InputService {
                     System.out.print(prompt);
                     intAns = keyboard.nextInt();
                     if (intAns < minValue || intAns > maxValue ){
-                        throw new menuException("ERROR Option not available");
+                        throw new MenuException("ERROR Option not available");
                     }
                     isValid = true;
-            }catch (InputMismatchException | menuException e){
+            }catch (InputMismatchException | MenuException e){
                 LOGGER.error(e);
                 keyboard.next();
             }catch (Exception e){
@@ -87,10 +85,10 @@ public class InputService {
             try {
                 intAns = keyboard.nextInt();
                 if (intAns < minValue || intAns > maxValue ){
-                    throw new menuException("ERROR Option not available");
+                    throw new MenuException("ERROR Option not available");
                 }
                 isValid = true;
-            }catch (InputMismatchException | menuException e){
+            }catch (InputMismatchException | MenuException e){
                 LOGGER.error(e);
                 keyboard.next();
             }catch (Exception e){
