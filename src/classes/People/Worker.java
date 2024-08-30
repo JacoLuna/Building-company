@@ -36,7 +36,7 @@ public class Worker extends Employee implements IHasProjects {
             if (!projects.contains(project)){
                 projects.add(project);
             }else {
-                throw new ProjectListException(ProjectListExceptionCode.EXISTING_PROJECT.ordinal());
+                throw new ProjectListException(ProjectListExceptionCode.EXISTING_PROJECT.codeNumber);
             }
         } catch (ProjectListException projectListException){
             CONSOLE_ERROR.error(projectListException.getMessage());
@@ -49,7 +49,7 @@ public class Worker extends Employee implements IHasProjects {
             if (projects.contains(project)){
                 projects.remove(project);
             }else {
-                throw new ProjectListException(ProjectListExceptionCode.NOT_EXISTING_PROJECT.ordinal());
+                throw new ProjectListException(ProjectListExceptionCode.NOT_EXISTING_PROJECT.codeNumber);
             }
         } catch (ProjectListException projectListException){
             CONSOLE_ERROR.error(projectListException.getMessage());
@@ -58,10 +58,14 @@ public class Worker extends Employee implements IHasProjects {
 
     @Override
     public void removeProject(Integer projectIndex) {
-        if (projects.get(projectIndex) != null){
-            projects.remove(projectIndex);
-        }else {
-            //TODO project exception msg
+        try {
+            if (projects.get(projectIndex) != null){
+                projects.remove(projectIndex);
+            }else {
+                throw new ProjectListException(ProjectListExceptionCode.NOT_EXISTING_INDEX.codeNumber);
+            }
+        } catch (ProjectListException projectListException){
+            CONSOLE_ERROR.error(projectListException.getMessage());
         }
     }
 
@@ -76,19 +80,27 @@ public class Worker extends Employee implements IHasProjects {
     }
 
     public void setProject(int projectIndex, Project project){
-        if (!getProject(projectIndex).equals(project)){
-            projects.set(projectIndex, project);
-        }else {
-            //TODO project exception msg
+        try {
+            if (!getProject(projectIndex).equals(project)){
+                projects.set(projectIndex, project);
+            }else {
+                throw new ProjectListException(ProjectListExceptionCode.SAME_PROJECT.codeNumber);
+            }
+        } catch (ProjectListException projectListException){
+            CONSOLE_ERROR.error(projectListException.getMessage());
         }
     }
 
     @Override
     public void clearProjects(){
-        if (!projects.isEmpty()){
-            projects.clear();
-        }else {
-            //TODO project exception msg
+        try {
+            if (!projects.isEmpty()){
+                projects.clear();
+            }else {
+                throw new ProjectListException(ProjectListExceptionCode.EMPTY_LIST.codeNumber);
+            }
+        } catch (ProjectListException projectListException){
+            CONSOLE_ERROR.error(projectListException.getMessage());
         }
     }
 }

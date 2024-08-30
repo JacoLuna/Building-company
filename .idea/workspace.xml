@@ -5,18 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="64b9ac99-5435-44d6-8879-c501d9a8e836" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/classes/BuildingCompany.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/classes/BuildingCompany.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/classes/Exceptions/menuException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/classes/Exceptions/MenuException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/classes/Exceptions/workerException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/classes/Exceptions/WorkerException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/classes/People/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/classes/People/Client.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/classes/People/Person.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/classes/People/Person.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/classes/People/Worker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/classes/People/Worker.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/classes/interfaces/Updatable.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/classes/projects/Project.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/classes/projects/Project.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/classes/services/InputService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/classes/services/InputService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/enums/ProjectListExceptionCode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/enums/ProjectListExceptionCode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/enums/WorkerExceptionCode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/enums/WorkerExceptionCode.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

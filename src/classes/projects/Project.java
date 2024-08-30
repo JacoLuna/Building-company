@@ -41,7 +41,7 @@ public class Project implements Printable {
             if (!this.workers.isEmpty()){
                 for (Worker wk : this.workers){
                     if (wk.equals(worker)){
-                        throw new WorkerException(WorkerExceptionCode.EXISTING_WORKER.ordinal());
+                        throw new WorkerException(WorkerExceptionCode.EXISTING_WORKER.codeNumber);
                     }
                 }
             }

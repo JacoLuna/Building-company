@@ -1,13 +1,15 @@
 package enums;
 
 public enum ProjectListExceptionCode {
-    EXISTING_PROJECT("This project already exists in the list"),
-    NOT_EXISTING_PROJECT("This project does not exist in the list"),
-    NOT_EXISTING_INDEX("This index project does not exist in the list"),
-    SAME_PROJECT("This project is already at this index"),
-    EMPTY_LIST("This list is already empty");
+    EXISTING_PROJECT(0,"This project already exists in the list"),
+    NOT_EXISTING_PROJECT(1,"This project does not exist in the list"),
+    NOT_EXISTING_INDEX(2,"This index project does not exist in the list"),
+    SAME_PROJECT(3,"This project is already at this index"),
+    EMPTY_LIST(4,"This list is already empty");
+    public final int codeNumber;
     public final String message;
-    ProjectListExceptionCode(String message){
+    ProjectListExceptionCode(int codeNumber,String message){
+        this.codeNumber = codeNumber;
         this.message = message;
     }
 }
