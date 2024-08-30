@@ -45,7 +45,6 @@ public class InputService {
         return intAns;
     }
     public int setIntAns(List<Integer> ansArray) {
-        CONSOLE_ERROR.error("test");
         boolean isValid = false;
         do {
             try {

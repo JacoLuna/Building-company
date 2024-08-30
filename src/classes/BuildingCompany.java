@@ -15,12 +15,15 @@ public final class BuildingCompany {
     private static final int MY_PROFILE_OPTION = 2;
     private static final int BEGIN_PROJECT_OPTION = 3;
     private static final int MANAGE_PROJECT_OPTION = 4;
-    private static final int EXIT_OPTION = 5;
+    private static final int ERROR_REPORT_OPTION = 5;
+    private static final int EXIT_OPTION = 6;
+
     private static final int SIGN_IN_OPTION = 0;
     private static final int LOG_IN_OPTION = 1;
+    private static final int  EXIT_LOGGED_OUT_OPTION = 2;
     private static final int  ADMIN_CLIENT_OPTION = 2001;
     private static final int  ADMIN_WORKER_OPTION = 312;
-    private static final int  EXIT_LOGGED_OUT_OPTION = 2;
+
     private static final int  PERSON_OPTION = 0;
     private static final int  STRUCTURE_OPTION = 1;
     private static final int  PRODUCT_OPTION = 2;
@@ -32,17 +35,18 @@ public final class BuildingCompany {
     DefaultDataService instanceSrv = new DefaultDataService();
     StructureService structureSrc = new StructureService();
     ProjectService projectSrv = new ProjectService();
+    FileService fileSrv = new FileService();
 
     public void startProgram() {
         instanceSrv.instantiateAll();
 
-        DefaultDataService.getProjects().get(0).addWorker( (Worker) DefaultDataService.getWorkers()[0]);
-        DefaultDataService.getProjects().get(0).addWorker( (Worker) DefaultDataService.getWorkers()[0]);
+//        DefaultDataService.getProjects().get(0).addWorker( (Worker) DefaultDataService.getWorkers()[0]);
+//        DefaultDataService.getProjects().get(0).addWorker( (Worker) DefaultDataService.getWorkers()[0]);
 
         do {
             if (Global.LogIn) {
-                handleUserSession(new String[]{"AMD", "Print Objects", "My profile", "Begin Project", "Manage project", "Exit"},
-                        Arrays.asList(AMD_OPTION, PRINT_OBJECTS_OPTION, MY_PROFILE_OPTION, PROJECT_OPTION, PROJECT_OPTION, EXIT_OPTION));
+                handleUserSession(new String[]{"AMD", "Print Objects", "My profile", "Begin Project", "Manage project", "Read error reports", "Exit"},
+                        Arrays.asList(AMD_OPTION, PRINT_OBJECTS_OPTION, MY_PROFILE_OPTION, PROJECT_OPTION, PROJECT_OPTION, ERROR_REPORT_OPTION ,EXIT_OPTION));
             } else {
                 handleUserSession(new String[]{"Sign in", "Log in", "Exit"},
                         Arrays.asList(SIGN_IN_OPTION, LOG_IN_OPTION,  ADMIN_CLIENT_OPTION,  ADMIN_WORKER_OPTION,  EXIT_LOGGED_OUT_OPTION));
@@ -107,6 +111,9 @@ public final class BuildingCompany {
                 break;
             case MANAGE_PROJECT_OPTION:
                 projectSrv.createProject();
+                break;
+            case ERROR_REPORT_OPTION:
+                fileSrv.readFile("logs/app.log");
                 break;
         }
     }
